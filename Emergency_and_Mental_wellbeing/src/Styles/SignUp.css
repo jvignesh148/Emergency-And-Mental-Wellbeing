@@ -1,0 +1,112 @@
+
+.signup_page {
+    align-items: top;
+    height: 100vh;
+    width: 100vw;
+    background: url('/background.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+header {
+    background-color: #2c3e50;
+    padding: 15px 0;
+    color: white;
+    flex-shrink: 0;
+}
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav li {
+    margin: 0 20px;
+}
+nav li#topic {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+nav a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    font-weight: normal;
+    transition: color 0.3s ease;
+}
+nav a:hover {
+    color: #e74c3c;
+}
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+    nav li {
+        margin: 10px 0;
+    }
+}
+.SignUp_section {
+    width: 100%;
+    max-width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.159);
+    background: hsl(0, 0%, 100%);
+    margin: auto  ; /* Add top margin to push below nav, center horizontally */
+    margin-top: 100px;
+    justify-content: center;
+}
+.SignUp_section h2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.SignUp_section label {
+    color:black;
+    margin-bottom: 5px;
+    font-size: 16px;
+    text-align: left;
+}
+.SignUp_section input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.156);
+}
+.SignUp_section button {
+    margin-top: 20px;
+    padding: 10px;
+    width:100%;
+    background-color: rgba(15, 163, 231, 0.878);
+    color: white;
+    border:none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.SignUp_section p{
+    text-align: center;
+}
+.signup_option{
+    color : black;
+    text-align: center;
+}
+.SignUp_section .signup_option Link{
+    text-decoration: none;
+}
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.success-message {
+    color: green;
+    margin-bottom: 10px;
+    font-size: 14px;
+}

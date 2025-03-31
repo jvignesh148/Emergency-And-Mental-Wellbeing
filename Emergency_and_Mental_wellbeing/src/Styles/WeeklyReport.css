@@ -1,0 +1,32 @@
+.weekly-report {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .weekly-report h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .weekly-report h3 {
+    text-align:center;
+    font-size: 18px;
+    margin-bottom:10px;
+    margin-top: 20px;
+  }
+  
+  .weekly-report p {
+    text-align:center;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .settings-note {
+    font-size: 12px;
+    color: #888;
+    text-align: right;
+    margin-top: 10px;
+  }

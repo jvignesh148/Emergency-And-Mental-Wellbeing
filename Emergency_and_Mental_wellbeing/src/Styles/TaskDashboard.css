@@ -1,0 +1,101 @@
+/* Reset default margins and padding for the entire page */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure the main container has no margins or padding that affect the header */
+.task-dashboard {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    min-height: 100vh; /* Ensure the container takes full height */
+    box-sizing: border-box;
+}
+
+
+/* Add padding to the content below the header to prevent overlap */
+h1 {
+    text-align: center;
+    margin: 70px 0 20px 0; /* Add top margin to account for fixed header */
+}
+
+/* Style the task input section */
+.task-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 0 20px; /* Add some padding to prevent content from touching edges */
+}
+
+.task-input input,
+.task-input select,
+.task-input button {
+    padding: 8px;
+    font-size: 16px;
+}
+
+.task-input button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.task-input button:hover {
+    background-color: #219653;
+}
+
+/* Style the task sections */
+.task-sections {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 20px; /* Add padding to prevent content from touching edges */
+}
+
+.task-column {
+    flex: 1;
+    padding: 10px;
+    background-color: #f5f6fa;
+    border-radius: 5px;
+}
+
+.task-column h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.task-card {
+    display: flex;
+    flex-direction: column; /* Change to column for vertical layout */
+    align-items: flex-start;
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+}
+
+.task-card button {
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-top:10px;
+    cursor: pointer;
+}
+
+.task-card button:first-of-type {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.task-card button:last-of-type {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}

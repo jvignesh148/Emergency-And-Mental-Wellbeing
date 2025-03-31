@@ -1,0 +1,98 @@
+.Login_section{
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    margin:auto;
+    margin-top: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: hsl(0, 0%, 100%);
+}
+.login_page {
+    align-items: top;
+    height: 100vh;
+    width: 100vw;
+    background: url('/background.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+header {
+    background-color: #2c3e50;
+    padding: 15px 0;
+    color: white;
+    flex-shrink: 0;
+}
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav li {
+    margin: 0 20px;
+}
+nav li#topic {
+    font-size: 30px;
+    padding-right: 100px;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+nav a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    font-weight: normal;
+    transition: color 0.3s ease;
+}
+nav a:hover {
+    color: #e74c3c;
+}
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+    nav li {
+        margin: 10px 0;
+    }
+}
+.Login_section h2{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.Login_section label{
+    text-align: left;
+}
+.Login_section input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.158);
+    border-radius: 5px;
+    width: 100%;
+}
+.Login_section button{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top:20px;
+    color: white;
+    background-color: rgba(0, 153, 255, 0.893);
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.Login_section .Login_option{
+    text-align: center;
+}
+
+.Login_section .Login_option a{
+    margin-right: 5px;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
