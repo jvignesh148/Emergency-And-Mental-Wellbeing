@@ -62,7 +62,7 @@ const PreviousReports = () => {
               <p><strong>Mood Description:</strong> {report.moodDescription}</p>
               <p><strong>Journal Entry:</strong> {report.journalEntry || 'N/A'}</p>
               <p><strong>Sleep Hours:</strong> {report.sleepHours}</p>
-              <p><strong>Water Intake:</strong> {report.waterIntake} ml</p>
+              <p><strong>Water Intake:</strong> {report.waterIntake} L</p>
               <button onClick={() => handleDelete(report.id)} className="delete-button">
                 Delete
               </button>
