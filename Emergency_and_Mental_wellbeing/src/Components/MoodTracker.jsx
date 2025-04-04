@@ -96,7 +96,7 @@ const MoodTracker = () => {
             />
           </label>
           <label>
-            Water Intake (ml):
+            Water Intake (L):
             <input
               type="number"
               value={waterIntake}
