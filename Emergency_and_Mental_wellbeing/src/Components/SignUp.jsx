@@ -28,13 +28,35 @@ export const SignUp = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
         // Validate password before sending to backend
+
+        if (!firstname) {
+            alert("Please enter your First Name");
+            return;
+        }
+        if (!lastname) {
+            alert("Please enter your Last Name");
+            return;
+        }
+        if (!email) {
+            alert("Please enter your Email ID");
+            return;
+        }
+        if (!password) {
+            alert("Please enter your Password");
+            return;
+        }
+
         if (!passwordRegex.test(password)) {
             setError("Password must be at least 8 characters long and include:\n- One uppercase letter\n- One lowercase letter\n- One number\n- One special character (@$!%*?&)");
             return;
         }
 
-        if (!securityQuestion || !securityAnswer) {
-            setError("Security question and answer are required");
+        if (!securityQuestion) {
+            alert("Please enter a Security Question");
+            return;
+        }
+        if (!securityAnswer) {
+            alert("Please enter a Security Answer");
             return;
         }
 
@@ -59,21 +81,16 @@ export const SignUp = () => {
             }
 
             if (!response.ok) {
-                setError(result.message || "Signup failed");
+                alert(result.message || "Signup failed");
                 return;
-            }
+            }         
 
-            if (!data.securityQuestion || !data.securityAnswer) {
-                setError("Security question and answer are required");
-                return;
-            }            
-
-            setSuccess(result.message); // "User registered successfully!"
+            alert(result.message); // "User registered successfully!"
             setError('');
             navigate("/login");
         } catch (error) {
             console.error('Fetch error details:', error);
-            setError(error.message || "Server error—check if backend is running.");
+            alert(error.message || "Server error—check if backend is running.");
         }
     };
 
@@ -85,13 +102,13 @@ export const SignUp = () => {
                         {error && <div className="error-message">{error}</div>}
                         {success && <div className="success-message">{success}</div>}
                         <label htmlFor="fname">First Name</label>
-                        <input type="text" name="firstname" value={data.firstname} onChange={handleChange} required />
+                        <input type="text" name="firstname" value={data.firstname} onChange={handleChange} />
                         <label htmlFor="lname">Last Name</label>
-                        <input type="text" name="lastname" value={data.lastname} onChange={handleChange} required />
+                        <input type="text" name="lastname" value={data.lastname} onChange={handleChange}  />
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" value={data.email} onChange={handleChange} required />
+                        <input type="email" name="email" value={data.email} onChange={handleChange}  />
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" value={data.password} onChange={handleChange} required />
+                        <input type="password" name="password" value={data.password} onChange={handleChange}  />
                         <label htmlFor="securityQuestion">Security Question</label>
                         <input 
                             type="text" 
@@ -99,7 +116,6 @@ export const SignUp = () => {
                             value={data.securityQuestion} 
                             onChange={(e) => setData((prevData) => ({ ...prevData, securityQuestion: e.target.value }))} 
                             placeholder="e.g., What was your first pet's name?"
-                            required 
                         />
                         <label htmlFor="securityAnswer">Security Answer</label>
                         <input 
@@ -107,7 +123,6 @@ export const SignUp = () => {
                             name="securityAnswer" 
                             value={data.securityAnswer} 
                             onChange={(e) => setData((prevData) => ({ ...prevData, securityAnswer: e.target.value }))}
-                            required 
                         />
                         <button type="submit">Register</button>
                     </form>
