@@ -17,6 +17,20 @@ export const Login = () => {
         e.preventDefault();
         setIsLoading(true);
         setError('');
+
+        const { email, password } = logindata;
+
+        if (!email) {
+            alert("Please enter your Email ID");
+            navigate("/");
+            return;
+        }
+
+        if (!password) {
+            alert("Please enter your Password");
+            return;
+        }
+
         try {
             const response = await fetch("http://localhost:8080/api/users/login", {
                 method: "POST",
@@ -33,10 +47,10 @@ export const Login = () => {
                 alert("Login successful!");
                 navigate("/home");
             } else {
-                setError(result.message || "Login failed");
+                alert(result.message || "Login failed");
             }
         } catch (error) {
-            setError(error.message || "Server error—check if backend is running.");
+            alert(error.message || "Server error—check if backend is running.");
         } finally {
             setIsLoading(false);
         }
@@ -49,11 +63,11 @@ export const Login = () => {
             {error && <p style={{ color: "red" }}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
-                <input id="email" type="email" name="email" value={logindata.email} onChange={handleChange} required/>
+                <input id="email" type="email" name="email" value={logindata.email} onChange={handleChange} />
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password" name="password" value={logindata.password} onChange={handleChange} required/>
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? "Logging In..." : "Log In"}
+                <input id="password" type="password" name="password" value={logindata.password} onChange={handleChange} />
+                <button type="submit">
+                     Log In
                 </button>
             </form>
             <div className="Login_option">
