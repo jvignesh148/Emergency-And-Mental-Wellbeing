@@ -48,7 +48,7 @@ const NewsPage = () => {
       setQuery(searchInput);
       fetchNews();
     } else {
-      console.log('Search input is empty, please enter a query.');
+      alert('Search input is empty, please enter a query.');
     }
   };
 
@@ -79,6 +79,7 @@ const NewsPage = () => {
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Enter a topic (e.g., Mental Health)"
           className="search-input"
+          required
         />
         <button onClick={handleSearch} className="search-button">
           Search
