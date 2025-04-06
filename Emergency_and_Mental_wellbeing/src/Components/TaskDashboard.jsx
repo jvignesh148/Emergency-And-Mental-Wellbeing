@@ -60,16 +60,16 @@ const TaskDashboard = () => {
         try {
             // Validate inputs
             if (!userId) {
-                throw new Error("User ID is missing. Please log in again.");
+                alert("User ID is missing. Please log in again.");
             }
             if (!newTask.title) {
-                throw new Error("Task title is required.");
+                alert("Task title is required.");
             }
             if (!newTask.dueDate) {
-                throw new Error("Due date is required.");
+                alert("Due date is required.");
             }
             if (!newTask.priority) {
-                throw new Error("Priority is required.");
+                alert("Priority is required.");
             }
     
             // Format dueDate and reminderTime to ISO 8601
@@ -112,7 +112,7 @@ const TaskDashboard = () => {
             setNewTask({ title: '', priority: 'HIGH', dueDate: '', reminderTime: '' });
             fetchTasks();
         } catch (err) {
-            setError('Error adding task: ' + err.message);
+            alert('Error adding task: ' + err.message);
         } finally {
             setIsLoading(false);
         }
@@ -135,13 +135,13 @@ const TaskDashboard = () => {
         try {
             // Validate inputs
             if (!newTask.title) {
-                throw new Error("Task title is required.");
+                alert("Task title is required.");
             }
             if (!newTask.dueDate) {
-                throw new Error("Due date is required.");
+                alert("Due date is required.");
             }
             if (!newTask.priority) {
-                throw new Error("Priority is required.");
+                alert("Priority is required.");
             }
     
             // Format dueDate and reminderTime to ISO 8601
