@@ -44,21 +44,21 @@ const SosMap = () => {
                     setGeoError('');
                 },
                 (error) => {
-                    setGeoError("Unable to get your location. Please allow location access.");
+                    alert("Unable to get your location. Please allow location access.");
                 }
             );
         } else {
-            setGeoError("Geolocation is not supported by this browser.");
+            alert("Geolocation is not supported by this browser.");
         }
     };
 
     const sendLocation = async () => { // Marked as async to use await
         if (!position) {
-            setSendError("Please get your location first.");
+            alert("Please get your location first.");
             return;
         }
         if (!phoneNumber.trim()) {
-            setSendError("Please enter a valid phone number.");
+            alert("Please enter a valid phone number.");
             return;
         }
 
@@ -71,7 +71,7 @@ const SosMap = () => {
         // Validate phone number format (basic check)
         const phoneRegex = /^\+\d{10,12}$/;
         if (!phoneRegex.test(formattedNumber)) {
-            setSendError("Please enter a valid phone number (e.g., +1234567890).");
+            alert("Please enter a valid phone number (e.g., +1234567890).");
             return;
         }
 
