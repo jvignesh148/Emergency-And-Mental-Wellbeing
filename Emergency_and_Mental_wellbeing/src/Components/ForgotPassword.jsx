@@ -10,28 +10,31 @@ const ForgotPassword = () => {
   const [securityQuestion, setSecurityQuestion] = useState("");
   const [securityAnswer, setSecurityAnswer] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  
 
   // Step 1: Submit email to get security question
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
+    if (!email) {
+      alert("Please enter your Email ID");
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:8080/api/users/forgot-password", { email });
       setSecurityQuestion(response.data.securityQuestion);
       setStep(2);
     } catch (err) {
-      setError(err.response?.data?.message || "Error contacting server");
+      alert(err.response?.data?.message || "Error contacting server");
     }
   };
 
   // Step 2: Verify security answer
   const handleAnswerSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
+    if (!securityAnswer) {
+      alert("Please enter your Security Answer");
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:8080/api/users/verify-security-answer", {
         email,
@@ -41,24 +44,32 @@ const ForgotPassword = () => {
         setStep(3);
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Error verifying answer");
+      alert(err.response?.data?.message || "Error verifying answer");
     }
   };
 
   // Step 3: Reset password
   const handlePasswordReset = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
+    if (!newPassword) {
+      alert("Please enter your New Password");
+      return;
+    }
+
+    if (!passwordRegex.test(newPassword)) {
+      alert("Password must be at least 8 characters long and include:\n- One uppercase letter\n- One lowercase letter\n- One number\n- One special character (@$!%*?&)");
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:8080/api/users/reset-password", {
         email,
         password: newPassword,
       });
-      setSuccess(response.data.message);
+      alert(response.data.message);
       setTimeout(() => navigate("/login"), 2000); // Redirect to login after 2 seconds
     } catch (err) {
-      setError(err.response?.data?.message || "Error resetting password");
+      alert(err.response?.data?.message || "Error resetting password");
     }
   };
 
@@ -66,8 +77,6 @@ const ForgotPassword = () => {
     <div className="forgot-password-page">
       <div className="forgot-password-section">
         <h2>Forgot Password</h2>
-        {error && <div className="error-message">{error}</div>}
-        {success && <div className="success-message">{success}</div>}
 
         {/* Step 1: Email Input */}
         {step === 1 && (
@@ -78,7 +87,6 @@ const ForgotPassword = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
             />
             <button type="submit">Get Security Question</button>
           </form>
@@ -93,7 +101,6 @@ const ForgotPassword = () => {
               value={securityAnswer}
               onChange={(e) => setSecurityAnswer(e.target.value)}
               placeholder="Enter your answer"
-              required
             />
             <button type="submit">Verify Answer</button>
           </form>
@@ -108,7 +115,6 @@ const ForgotPassword = () => {
               id="newPassword"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              required
             />
             <button type="submit">Reset Password</button>
           </form>
