@@ -40,7 +40,7 @@ const PreviousReports = () => {
                     <li><a href='/chatbot'>Chatbot</a></li>
                     <li><a href='#videos'>videos</a></li>
                     <li><a href='/mood-track'>Mood Track</a></li>
-                    <li><a href='#new-api'>News API</a></li>
+                    <li><a href='/news-api'>News API</a></li>
                     <li><a href='/task-management'>Task Management</a></li>
                 </ul>
             </nav>
