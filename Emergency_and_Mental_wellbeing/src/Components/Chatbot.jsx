@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../Styles/Chatbot.css';
 
-const GEMINI_API_KEY = 'AIzaSyCI2whM2-4aAnDNOTiJZ5miiDgR3KiLAnY'; // Replace with your Gemini API key or use import.meta.env.VITE_GEMINI_API_KEY
+const GEMINI_API_KEY = 'ENTER_YOUR_API_KEY'; // Replace with your Gemini API key or use import.meta.env.VITE_GEMINI_API_KEY
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${GEMINI_API_KEY}`;
 
 function Chatbot() {
