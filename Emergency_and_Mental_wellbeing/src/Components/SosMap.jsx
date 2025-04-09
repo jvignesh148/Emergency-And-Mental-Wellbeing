@@ -119,6 +119,7 @@ const SosMap = () => {
                         <li><a href="#mood">Mood Track</a></li>
                         <li><a href="/news-api">News API</a></li>
                         <li><a href="/task-management">Task Management</a></li>
+                        <li><a href='/'>Logout</a></li>
                     </ul>
                 </nav>
             </header>
