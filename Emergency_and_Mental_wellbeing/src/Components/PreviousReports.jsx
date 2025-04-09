@@ -42,10 +42,10 @@ const PreviousReports = () => {
                     <li><a href='/mood-track'>Mood Track</a></li>
                     <li><a href='/news-api'>News API</a></li>
                     <li><a href='/task-management'>Task Management</a></li>
+                    <li><a href='/'>Logout</a></li>
                 </ul>
             </nav>
         </header>
-        <main>
           <div className="previous-reports">
       <h2>Previous Mood Reports</h2>
       <button onClick={() => navigate('/mood-track')} className="back-button">
@@ -71,7 +71,6 @@ const PreviousReports = () => {
         )}
       </div>
       </div>
-      </main>
     </div>
   );
 };
