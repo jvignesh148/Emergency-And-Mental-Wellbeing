@@ -55,6 +55,7 @@ function Chatbot() {
                         <li><Link to="/mood-track">Mood Track</Link></li>
                         <li><Link to="/new-api">News API</Link></li>
                         <li><Link to="/task-management">Task Management</Link></li>
+                        <li><Link to="/">Logout</Link></li>
                     </ul>
                 </nav>
             </header>
