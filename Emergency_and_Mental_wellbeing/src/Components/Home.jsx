@@ -5,7 +5,6 @@ import '../Styles/Home.css'
 export const Home = () => {
     const navigate = useNavigate(); 
     const [showSignUp, setShowSignUp] = useState(false);
-  };
 
   return (
     <div className='home_Section'>
