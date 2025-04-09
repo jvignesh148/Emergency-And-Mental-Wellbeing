@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/TaskDashboard.css';
-
+const formatToLocalISOString = (date) => {
+    const pad = (n) => n.toString().padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+};
+   
 const TaskDashboard = () => {
     const navigate = useNavigate();
     const [tasks, setTasks] = useState({ HIGH: [], MEDIUM: [], LOW: [] });
@@ -77,7 +81,8 @@ const TaskDashboard = () => {
             if (isNaN(dueDate)) {
                 throw new Error("Invalid due date format.");
             }
-            const formattedDueDate = dueDate.toISOString().split('.')[0];
+            const formattedDueDate = formatToLocalISOString(dueDate);
+
     
             let formattedReminderTime = null;
             if (newTask.reminderTime) {
@@ -85,8 +90,9 @@ const TaskDashboard = () => {
                 if (isNaN(reminderTime)) {
                     throw new Error("Invalid reminder time format.");
                 }
-                formattedReminderTime = reminderTime.toISOString().split('.')[0];
+                formattedReminderTime = formatToLocalISOString(reminderTime);
             }
+
     
             const taskData = {
                 userId,
@@ -124,7 +130,7 @@ const TaskDashboard = () => {
             title: task.title,
             priority: task.priority,
             dueDate: task.dueDate.split('T')[0],
-            reminderTime: task.reminderTime ? task.reminderTime.split('T')[0] : '',
+            reminderTime: task.reminderTime ? task.reminderTime.slice(0, 16) : '',
         });
     };
 
@@ -149,7 +155,8 @@ const TaskDashboard = () => {
             if (isNaN(dueDate)) {
                 throw new Error("Invalid due date format.");
             }
-            const formattedDueDate = dueDate.toISOString().split('.')[0];
+            const formattedDueDate = formatToLocalISOString(dueDate);
+
     
             let formattedReminderTime = null;
             if (newTask.reminderTime) {
@@ -157,8 +164,9 @@ const TaskDashboard = () => {
                 if (isNaN(reminderTime)) {
                     throw new Error("Invalid reminder time format.");
                 }
-                formattedReminderTime = reminderTime.toISOString().split('.')[0];
+                formattedReminderTime = formatToLocalISOString(reminderTime);
             }
+
     
             const taskData = {
                 title: newTask.title,
@@ -267,8 +275,29 @@ const TaskDashboard = () => {
                     {tasks.HIGH.map(task => (
                         <div key={task.id} className="task-card">
                             <p><strong>Title:</strong> {task.title}</p>
-                            <p><strong>Due:</strong> {task.dueDate ? new Date(task.dueDate).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' UTC' : 'None'}</p>
-                            <p><strong>Reminder:</strong> {task.reminderTime ? new Date(task.reminderTime).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' UTC' : 'None'}</p>
+                            <p><strong>Due:</strong> {
+                                                    task.dueDate
+                                                        ? new Date(task.dueDate).toLocaleString('en-US', {
+                                                            year: 'numeric',
+                                                            month: '2-digit',
+                                                            day: '2-digit'
+                                                        })
+                                                        : 'None'
+                                                    }</p>
+                            <p><strong>Reminder:</strong> {
+                                                    task.reminderTime
+                                                        ? new Date(task.reminderTime).toLocaleString('en-US', {
+                                                            hour12: true,
+                                                            year: 'numeric',
+                                                            month: '2-digit',
+                                                            day: '2-digit',
+                                                            hour: '2-digit',
+                                                            minute: '2-digit',
+                                                            second: '2-digit'
+                                                        })
+                                                        : 'None'
+                                                    }</p>
+
                             <button onClick={() => handleEditTask(task)}>Edit</button>
                             <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
                         </div>
@@ -279,8 +308,28 @@ const TaskDashboard = () => {
                     {tasks.MEDIUM.map(task => (
                         <div key={task.id} className="task-card">
                             <p>{task.title}</p>
-                            <p><strong>Due:</strong> {task.dueDate ? new Date(task.dueDate).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' UTC' : 'None'}</p>
-                            <p><strong>Reminder:</strong> {task.reminderTime ? new Date(task.reminderTime).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' UTC' : 'None'}</p>
+                            <p><strong>Due:</strong> {
+                                    task.dueDate
+                                        ? new Date(task.dueDate).toLocaleString('en-US', {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit'
+                                        })
+                                        : 'None'
+                                    }</p>
+                            <p><strong>Reminder:</strong> {
+                                    task.reminderTime
+                                        ? new Date(task.reminderTime).toLocaleString('en-US', {
+                                            hour12: true,
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            second: '2-digit'
+                                        })
+                                        : 'None'
+                                    }</p>
                             <button onClick={() => handleEditTask(task)}>Edit</button>
                             <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
                         </div>
@@ -291,8 +340,28 @@ const TaskDashboard = () => {
                     {tasks.LOW.map(task => (
                         <div key={task.id} className="task-card">
                             <p>{task.title}</p>
-                            <p><strong>Due:</strong> {task.dueDate ? new Date(task.dueDate).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' UTC' : 'None'}</p>
-                            <p><strong>Reminder:</strong> {task.reminderTime ? new Date(task.reminderTime).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' UTC' : 'None'}</p>
+                            <p><strong>Due:</strong> {
+                                            task.dueDate
+                                                ? new Date(task.dueDate).toLocaleString('en-US', {
+                                                    year: 'numeric',
+                                                    month: '2-digit',
+                                                    day: '2-digit'
+                                                })
+                                                : 'None'
+                                            }</p>
+                            <p><strong>Reminder:</strong> {
+                                        task.reminderTime
+                                            ? new Date(task.reminderTime).toLocaleString('en-US', {
+                                                hour12: true,
+                                                year: 'numeric',
+                                                month: '2-digit',
+                                                day: '2-digit',
+                                                hour: '2-digit',
+                                                minute: '2-digit',
+                                                second: '2-digit'
+                                            })
+                                            : 'None'
+                                        }</p>
                             <button onClick={() => handleEditTask(task)}>Edit</button>
                             <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
                         </div>
