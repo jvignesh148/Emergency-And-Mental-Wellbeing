@@ -4,7 +4,10 @@ import com.example.model.Task;
 import com.example.service.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
+import jakarta.mail.internet.MimeMessage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,10 +18,12 @@ import java.util.Map;
 public class TaskController {
 
     private final TaskService taskService;
+    private final JavaMailSender mailSender;
 
     @Autowired
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService, JavaMailSender mailSender) {
         this.taskService = taskService;
+        this.mailSender = mailSender;
     }
 
     @PostMapping
@@ -92,5 +97,23 @@ public class TaskController {
         Map<String, String> response = new HashMap<>();
         response.put("message", "An unexpected error occurred: " + ex.getMessage());
         return ResponseEntity.status(500).body(response);
+    }
+    @GetMapping("/test-email")
+    public ResponseEntity<Map<String, String>> testEmail() {
+        Map<String, String> response = new HashMap<>();
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setTo("receiver mail id"); // Your email
+            helper.setSubject("Test Email from ZenAlert");
+            helper.setText("This is a test email to verify Gmail SMTP configuration.");
+            mailSender.send(message);
+            response.put("message", "Test email sent successfully!");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("message", "Failed to send test email: " + e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
     }
 }
