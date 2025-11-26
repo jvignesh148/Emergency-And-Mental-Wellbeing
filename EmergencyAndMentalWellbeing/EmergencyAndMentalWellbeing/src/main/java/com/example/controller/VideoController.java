@@ -11,7 +11,7 @@ import java.util.*;
 @CrossOrigin(origins = "http://localhost:5173")  // Adjust frontend port if needed
 public class VideoController {
 
-    private static final String API_KEY = "AIzaSyA7BzdvD7yxQ5SvAX9BmhYTcGAkFh8YsD8";  // Replace with your actual key
+    private static final String API_KEY = "YOUR GEMINI YOUTUBE API KEY";  // Replace with your actual key
     private static final String YOUTUBE_SEARCH_URL = 
         "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=%s&key=" + API_KEY;
 
